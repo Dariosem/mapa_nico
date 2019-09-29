@@ -19,8 +19,8 @@ export class MapComponent implements OnInit {
         attribution: '&copy; OpenStreetMap contributors'
       })
     ],
-    zoom: 7,
-    center: latLng([ 46.879966, -121.726909 ])
+    zoom: 14,
+    center: latLng([ -38.96138597360268, -68.2312560081482 ])
   };
 
   layersControl = {
@@ -34,9 +34,9 @@ export class MapComponent implements OnInit {
     }
   };
   layers = [
-    circle([ 46.95, -122 ], { radius: 5000 }),
+    circle([ -38.96138597360268, -68.2312560081482 ], { radius: 500 }),
     polygon([[ 46.8, -121.85 ], [ 46.92, -121.92 ], [ 46.87, -121.8 ]]),
-    marker([ 46.879966, -121.726909 ])
+    marker([ -38.96138597360268, -68.2312560081482 ])
   ];
 
 

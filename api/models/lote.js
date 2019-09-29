@@ -19,20 +19,11 @@ const PolygonSchema = new Schema({
 
 
 const LoteSchema = new Schema({
-    name: String,
-    color: {
-        type: String,
-        default: 'green'
-    },
-    status: {
-        type: String,
-        enum: ['Disponible', 'Reservado', 'Vendido'],
-        default: 'Disponible'
-    },
+    type: String,
     geometry: {
-        type: PolygonSchema,
-        index: '2dsphere'
+        type: PolygonSchema
     },
+    properties: Object
     
 });
 
