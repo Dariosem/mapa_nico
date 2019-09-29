@@ -7,6 +7,7 @@ var app = express();
 
 //cargar rutas
 var loteRoutes = require('./routes/lote.routes');
+var loteoRoutes = require('./routes/loteo.routes');
 /* var userRoutes = require('./routes/user.routes');
 var artistRoutes = require('./routes/artist.routes');
 var albumRoutes = require('./routes/album.routes');
@@ -27,6 +28,7 @@ app.use(bodyParser.json());
 
 //carga de rutas base
 app.use('/api', loteRoutes);
+app.use('/api', loteoRoutes);
 //app.use(express.static(path.join(__dirname, '../client')));
 /* app.use('/api', userRoutes);
 app.use('/api', artistRoutes);
