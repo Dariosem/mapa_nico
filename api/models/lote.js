@@ -14,7 +14,8 @@ const PolygonSchema = new Schema({
     coordinates:{
         type: [[[Number]]],
         required: true
-    }
+    },
+    loteo: { type: Schema.ObjectId, ref: 'Loteo'}
 });
 
 
