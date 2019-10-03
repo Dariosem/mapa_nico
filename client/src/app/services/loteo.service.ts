@@ -18,11 +18,11 @@ export class LoteoService {
   }
 
   getLoteos(): Observable<any>{
+      console.log(this.url);
       let headers = new HttpHeaders({
           'content-type':'application/json'
       });
-
-      return this._http.get(this.url + 'loteos/', {headers: headers} )
+      return this._http.get(this.url + 'loteos', {headers: headers} )
                           .map(res => res);
   }
 

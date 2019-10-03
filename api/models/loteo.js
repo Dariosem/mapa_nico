@@ -19,4 +19,4 @@ const LoteoSchema = new Schema({
     
 });
 
-module.exports = mongoose.model('loteo', LoteoSchema);
+module.exports = mongoose.model('Loteo', LoteoSchema);

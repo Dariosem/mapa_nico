@@ -15,9 +15,8 @@ const PolygonSchema = new Schema({
         type: [[[Number]]],
         required: true
     },
-    loteo: { type: Schema.ObjectId, ref: 'Loteo'}
+    loteo_id: { type: Schema.ObjectId, ref: 'Loteo'}
 });
-
 
 const LoteSchema = new Schema({
     type: String,
@@ -28,4 +27,4 @@ const LoteSchema = new Schema({
     
 });
 
-module.exports = mongoose.model('lote', LoteSchema);
+module.exports = mongoose.model('Lote', LoteSchema);

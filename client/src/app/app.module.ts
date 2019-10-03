@@ -1,10 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { FormsModule} from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
+
+import { LoteService } from './services/lote.service';
+import { LoteoService } from './services/loteo.service';
 
 @NgModule({
   declarations: [
@@ -14,9 +19,11 @@ import { MapComponent } from './map/map.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LeafletModule
+    LeafletModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ LoteService, LoteoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

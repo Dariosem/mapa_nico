@@ -1,14 +1,24 @@
 <div class="card">
 <div class="row">
     <div class="col-md-4 card">
-
+		<form>
+			<div class="form-group">
+				<label for="loteo">Loteo:</label>
+				<select name="loteo" class="form-control"  (change)="onChange($event)"  placeholder="Seleccionar un loteo..." required>
+					<option *ngFor="let lot of loteos" value="{{lot._id}}">{{lot.properties.name}}</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary" (click)="doApply()">Ir al loteo</button>
+			</div>
+		</form>
     </div>
     <div class="col-md-8">
         <div class="map"
             leaflet 
             [leafletOptions]="options"
             [leafletLayersControl]="layersControl"
-            [leafletLayers]="layers"
+            
         ></div>
     </div>
 </div>

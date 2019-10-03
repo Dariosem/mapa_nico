@@ -17,14 +17,14 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 //configurar cabeceras
-/* app.use((req, res, next) => {
+app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
     res.header('Access-Control-Allow-Method', 'GET, POST, OPTION, PUT, DELETE');
     res.header('Allow', 'GET, POST, OPTION, PUT, DELETE');
 
     next();
-}); */
+});
 
 //carga de rutas base
 app.use('/api', loteRoutes);

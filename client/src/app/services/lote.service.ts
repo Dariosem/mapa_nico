@@ -10,20 +10,27 @@ import { Lote } from '../models/Lote';
 @Injectable({
   providedIn: 'root'
 })
-export class LoteoService {
+export class LoteService {
   public url: string;
 
   constructor(private _http:HttpClient){
       this.url = GLOBAL.url;
   }
 
-  getLotes(): Observable<any>{
+  getLotes(id: String = null): Observable<any>{
+      
       let headers = new HttpHeaders({
           'content-type':'application/json'
       });
 
-      return this._http.get(this.url + 'lotes/', {headers: headers} )
+      if (id==null) {
+        return this._http.get(this.url + 'lotes/', {headers: headers} )
                           .map(res => res);
+      } else {
+        return this._http.get(this.url + 'lotes/' + id, {headers: headers} )
+                          .map(res => res);
+      }
+      
   }
 
   getLoteo(id:string): Observable<any>{

@@ -22,9 +22,17 @@ function getLote(req, res, next){
 }
 
 function getLotes(req, res, next){
-    Lote.find().then((lotes)=>{
-        res.send({lotes: lotes});
-    }).catch(next);
+    if (req.params.id) {
+        let id = req.params.id;
+        Lote.find({loteo_id:id}).then((lotes)=>{
+            res.send({lotes: lotes});
+        }).catch(next);
+    } else {
+        Lote.find().then((lotes)=>{
+            res.send({lotes: lotes});
+        }).catch(next);
+    }
+    
 }
 
 function updateLote(req, res, next){
