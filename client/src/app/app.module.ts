@@ -10,6 +10,7 @@ import { MapComponent } from './map/map.component';
 
 import { LoteService } from './services/lote.service';
 import { LoteoService } from './services/loteo.service';
+import { CoordsOrderChangeService } from './services/coords-order-change.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { LoteoService } from './services/loteo.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ LoteService, LoteoService],
+  providers: [ LoteService, LoteoService, CoordsOrderChangeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
