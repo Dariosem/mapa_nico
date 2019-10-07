@@ -4,6 +4,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { FormsModule} from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
@@ -11,11 +12,15 @@ import { MapComponent } from './map/map.component';
 import { LoteService } from './services/lote.service';
 import { LoteoService } from './services/loteo.service';
 import { CoordsOrderChangeService } from './services/coords-order-change.service';
+import { VentaComponent } from './venta/venta.component';
+import { ReservaComponent } from './reserva/reserva.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    VentaComponent,
+    ReservaComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +28,7 @@ import { CoordsOrderChangeService } from './services/coords-order-change.service
     LeafletModule,
     FormsModule,
     HttpClientModule
+    
   ],
   providers: [ LoteService, LoteoService, CoordsOrderChangeService],
   bootstrap: [AppComponent]

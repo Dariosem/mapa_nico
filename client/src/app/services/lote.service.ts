@@ -33,7 +33,7 @@ export class LoteService {
       
   }
 
-  getLoteo(id:string): Observable<any>{
+  getLote(id:string): Observable<any>{
 
       let headers = new HttpHeaders({
           'content-type':'application/json'
@@ -43,7 +43,7 @@ export class LoteService {
                           .map(res => res);
   }
 
-  addLoteo(lote: Lote): Observable<any>{
+  addLote(lote: Lote): Observable<any>{
      let params = JSON.stringify(lote);
      let headers = new HttpHeaders({
          'content-type':'application/json'
@@ -53,23 +53,23 @@ export class LoteService {
                       .map(res => res);
   }
 
-  editLoteo(id:string, lote: Lote): Observable<any>{
+  editLote(id:string, lote: Lote): Observable<any>{
       let params = JSON.stringify(lote);
       let headers = new HttpHeaders({
           'content-type': 'application/json'
       });
 
-      return this._http.put(this.url + 'lote/' + id, params, {headers: headers})
+      return this._http.post(this.url + 'edit-lote/' + id, params, {headers: headers})
                           .map(res => res);
   }
 
-  deleteLoteo(id:string): Observable<any>{
+  deleteLote(id:string): Observable<any>{
 
       let headers = new HttpHeaders({
           'content-type':'application/json'
       });
 
-      return this._http.delete(this.url + 'lote/' + id, {headers: headers} )
+      return this._http.get(this.url + 'delete-lote/' + id, {headers: headers} )
                           .map(res => res);
   }
 }

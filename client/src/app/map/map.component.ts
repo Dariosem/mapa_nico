@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { latLng, tileLayer, circle, polygon, marker, LatLng, Layer, icon} from 'leaflet';
 
+
 import { LoteoService } from '../services/loteo.service';
 import { Loteo } from '../models/loteo';
 
@@ -134,15 +135,10 @@ public loteo: Loteo;
                                   <div class="card-header">
                                     <h5>`+lot.properties.name+`</h5>
                                   </div>
-                                  <div class="card-body">
-                                    <p>Superficie: `+lot.properties.fill+`m2</p>
-                                    <hr><button class="btn btn-info" onClick="alert('Lote reservado')">
-                                      Reservar
-                                    </button>
-                                    <button class="btn btn-warning" onClick="alert('Lote vendido')">
-                                      Vender
-                                    </button>
-        
+                                    <div class="card-body">
+                                      <p>Superficie: `+lot.properties.fill+`m2</p>
+                                      <hr><a class="btn btn-info" href="/reserva/`+lot._id+`">Reservar</a>
+                                      <a class="btn btn-warning" href="/venta/`+lot._id+`">Vender</a>
                                     </div>
                                   </div>`
                                   );
