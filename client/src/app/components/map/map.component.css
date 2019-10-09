@@ -1,0 +1,16 @@
+.mapa{
+    height: 400px;
+    margin: 5px;
+}
+
+.titulo{
+    text-align: center;
+    margin: 30px 0px;
+    padding: 10px;
+    background-color: rgb(173, 224, 224);
+    color: rgb(78, 78, 78);
+}
+.mapa-container{
+    margin-top: 30px
+}
+

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { latLng, tileLayer, circle, polygon, marker, LatLng, Layer, icon} from 'leaflet';
 
 
-import { LoteoService } from '../services/loteo.service';
-import { Loteo } from '../models/loteo';
+import { LoteoService } from '../../services/loteo.service';
+import { Loteo } from '../../models/loteo';
 
-import { LoteService } from '../services/lote.service';
-import { CoordsOrderChangeService } from '../services/coords-order-change.service';
+import { LoteService } from '../../services/lote.service';
+import { CoordsOrderChangeService } from '../../services/coords-order-change.service';
 
 @Component({
   selector: 'app-map',

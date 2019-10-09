@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { LoteService} from '../services/lote.service';
+import { LoteService} from '../../services/lote.service';
 
-import { Lote } from '../models/lote';
+import { Lote } from '../../models/lote';
 
 @Component({
-  selector: 'app-venta',
-  templateUrl: './venta.component.html',
-  styleUrls: ['./venta.component.css'],
+  selector: 'app-reserva',
+  templateUrl: './reserva.component.html',
+  styleUrls: ['./reserva.component.css'],
   providers: [LoteService]
 })
-export class VentaComponent implements OnInit {
+export class ReservaComponent implements OnInit {
   public lote: Lote;
   public lote_id: string;
 
@@ -29,7 +29,7 @@ export class VentaComponent implements OnInit {
           this._router.navigate(['mapa']);
         } else {
           this.lote = resp.lote;
-          this.lote.properties.fill = '#F83323';
+          this.lote.properties.fill = '#FBFB0D';
           //Cambiar el color del lote
           this._loteService.editLote(this.lote_id, this.lote ).subscribe(
             resp=>{
@@ -50,4 +50,8 @@ export class VentaComponent implements OnInit {
       }
     );
   }
+
+
+
 }
+

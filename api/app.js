@@ -8,10 +8,8 @@ var app = express();
 //cargar rutas
 var loteRoutes = require('./routes/lote.routes');
 var loteoRoutes = require('./routes/loteo.routes');
-/* var userRoutes = require('./routes/user.routes');
-var artistRoutes = require('./routes/artist.routes');
-var albumRoutes = require('./routes/album.routes');
-var songRoutes = require('./routes/song.router'); */
+/* var userRoutes = require('./routes/user.routes');*/
+
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());

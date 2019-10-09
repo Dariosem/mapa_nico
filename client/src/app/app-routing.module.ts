@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { VentaComponent } from './venta/venta.component';
-import { ReservaComponent } from './reserva/reserva.component';
-import { MapComponent } from './map/map.component';
+import { VentaComponent } from './components/venta/venta.component';
+import { ReservaComponent } from './components/reserva/reserva.component';
+import { MapComponent } from './components/map/map.component';
 
 
 const routes: Routes = [
