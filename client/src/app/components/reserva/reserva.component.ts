@@ -29,8 +29,15 @@ export class ReservaComponent implements OnInit {
           this._router.navigate(['mapa']);
         } else {
           this.lote = resp.lote;
-          this.lote.properties.fill = '#FBFB0D';
-          //Cambiar el color del lote
+          
+          if(this.lote.properties.status=="Disponible"){
+            this.lote.properties.status = "Reservado";//Cambiar el estado
+            this.lote.properties.fill = '#FBFB0D';//Cambiar el color
+          }else if(this.lote.properties.status=="Reservado"){
+            this.lote.properties.status = "Disponible";//Cambiar el estado
+            this.lote.properties.fill = '#1bdc05';//Cambiar el color
+          }
+          
           this._loteService.editLote(this.lote_id, this.lote ).subscribe(
             resp=>{
               if (!resp.lote) {

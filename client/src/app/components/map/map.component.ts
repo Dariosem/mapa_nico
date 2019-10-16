@@ -17,12 +17,13 @@ import { CoordsOrderChangeService } from '../../services/coords-order-change.ser
 
 export class MapComponent implements OnInit {
 /* public options: object;
-public layersControl: object;
+
 public zoom: any;
 public center: any; */
 public loteos: [any];
 public lotes: [any];
 public loteo: Loteo;
+
 
   constructor(
     private _loteoService: LoteoService,
@@ -59,6 +60,17 @@ public loteo: Loteo;
   layers: Layer[] = [];
   marker: Layer = null;
   poligon: Layer = null;
+
+  layersControl = {
+    baseLayers: {
+      'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
+      'Open Cycle Map': tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+    },
+    overlays: {
+      'Big Circle': circle([ 46.95, -122 ], { radius: 5000 }),
+      'Big Square': polygon([[ 46.8, -121.55 ], [ 46.9, -121.55 ], [ 46.9, -121.7 ], [ 46.8, -121.7 ]])
+    }
+  }
 
   /**Busca de la base de datos los loteos cargados y los guarda en el parametro loteos */
    getLoteos(){
@@ -124,7 +136,8 @@ public loteo: Loteo;
                 this.lotes.forEach(lot=>{
                   //Cambiar el orden de las coordenadas para que sean lat-lng
                   let poly=this._coordService.getPolygon(lot.geometry.coordinates[0]);
-                  
+                  let link = (lot.properties.status=="Disponible")?"Reservar":"Canc.Reserva";
+                  let vendido = (lot.properties.status=="Vendido")? "none" : "inline";
                   this.poligon=polygon(poly,{
                                     color: lot.properties.stroke , 
                                     stroke:true, 
@@ -136,9 +149,13 @@ public loteo: Loteo;
                                     <h5>`+lot.properties.name+`</h5>
                                   </div>
                                     <div class="card-body">
-                                      <p>Superficie: `+lot.properties.fill+`m2</p>
-                                      <hr><a class="btn btn-info" href="/reserva/`+lot._id+`">Reservar</a>
-                                      <a class="btn btn-warning" href="/venta/`+lot._id+`">Vender</a>
+                                      <p>Estado: `+lot.properties.status+`</p>
+                                      <hr><div style="display:`+vendido+`">
+                                        <a class="btn btn-info" href="/reserva/`+lot._id+`">`+link+`</a>
+                                      </div>
+                                      <div style="display:`+vendido+`">
+                                        <a class="btn btn-warning" href="/venta/`+lot._id+`">Vender</a>
+                                      </div>
                                     </div>
                                   </div>`
                                   );
@@ -158,7 +175,10 @@ public loteo: Loteo;
         console.log('Error en la carga del loteo');
       }
     );
+
+    
   }
+  
 
 }
   

@@ -4,10 +4,10 @@ export class Lote{
         public type: string,
         public properties: {
             name: string,
-            fill: string
+            fill: string,
+            status:string
         },
         public geometry: Object,
         public loteo_id: string
     ){}
-
 }

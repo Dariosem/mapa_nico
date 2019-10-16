@@ -29,8 +29,13 @@ export class VentaComponent implements OnInit {
           this._router.navigate(['mapa']);
         } else {
           this.lote = resp.lote;
-          this.lote.properties.fill = '#F83323';
-          //Cambiar el color del lote
+          this.lote.properties.fill = '#F83323';//Cambiar el color del lote
+          
+          if(this.lote.properties.status=="Disponible" || this.lote.properties.status=="Reservado"){
+            this.lote.properties.status = "Vendido";//Cambiar el estado
+            this.lote.properties.fill = '#F83323';//Cambiar el color
+          }
+          
           this._loteService.editLote(this.lote_id, this.lote ).subscribe(
             resp=>{
               if (!resp.lote) {
