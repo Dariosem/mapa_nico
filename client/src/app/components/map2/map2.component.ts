@@ -10,12 +10,11 @@ import { CoordsOrderChangeService } from '../../services/coords-order-change.ser
 
 @Component({
   selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css'],
+  templateUrl: './map2.component.html',
   providers: [LoteoService, LoteService, CoordsOrderChangeService]
 })
 
-export class MapComponent implements OnInit {
+export class Map2Component implements OnInit {
 /* public options: object;
 
 public zoom: any;
