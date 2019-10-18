@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');
 const Lote = require('../models/lote');
 
-
 //Cargar un lote nuevo
 function createLote(req, res, next){
     // console.log(req.body.geometry);

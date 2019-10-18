@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 import { GLOBAL} from './global';
 
-import { Lote } from '../models/Lote';
+import { Lote } from '../models/lote';
 
 @Injectable({
   providedIn: 'root'

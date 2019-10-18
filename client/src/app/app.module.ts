@@ -8,6 +8,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
+import { Map2Component } from './components/map2/map2.component';
 
 import { LoteService } from './services/lote.service';
 import { LoteoService } from './services/loteo.service';
@@ -20,6 +21,7 @@ import { HeaderComponent } from './components/header/header.component';
   declarations: [
     AppComponent,
     MapComponent,
+    Map2Component,
     VentaComponent,
     ReservaComponent,
     HeaderComponent
