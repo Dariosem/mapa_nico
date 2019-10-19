@@ -65,6 +65,7 @@ public loteo: Loteo;
     baseLayers: {
       'Mapa': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '...' }),
       'Satelite': tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community' }),
+      'otro': tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap<\/a> contributors'})
     },
     overlays: {
       // 'Big Circle': circle([ 46.95, -122 ], { radius: 5000 }),
