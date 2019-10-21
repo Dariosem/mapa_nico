@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { latLng, tileLayer, circle, polygon, marker, LatLng, Layer, icon} from 'leaflet';
-
+import * as L from 'leaflet';
 
 import { LoteoService } from '../../services/loteo.service';
 import { Loteo } from '../../models/loteo';
@@ -16,25 +16,21 @@ import { CoordsOrderChangeService } from '../../services/coords-order-change.ser
 })
 
 export class MapComponent implements OnInit {
-/* public options: object;
+  /* public options: object;
 
-public zoom: any;
-public center: any; */
-public loteos: [any];
-public lotes: [any];
-public loteo: Loteo;
-
+  public zoom: any;
+  public center: any; */
+  public loteos: [any];
+  public lotes: [any];
+  public loteo: Loteo;
 
   constructor(
     private _loteoService: LoteoService,
     private _loteService: LoteService,
     private _coordService: CoordsOrderChangeService
-  ) {
-    
-   }
+  ) { }
 
   ngOnInit() {
-    
     this.getLoteos();
   }
 
@@ -179,9 +175,38 @@ public loteo: Loteo;
 
     
   }
-  
 
+  drawOptions = {
+    position: 'topright',
+    draw: {
+       marker: {
+          icon: L.icon({
+              iconSize: [ 25, 41 ],
+              iconAnchor: [ 13, 41 ],
+              iconUrl: 'leaflet-draw/marker-icon.png',
+              shadowUrl: 'leaflet-draw/marker-shadow.png'
+          })
+       },
+       polyline: false,
+       circle: {
+           shapeOptions: {
+               color: '#aaaaaa'
+           }
+       }
+    }
+  };
+  onDrawStart(e){
+    console.log('Inicio de edicion')
+  }
+
+  onDrawCreated(e){
+    console.log(e.layer._latlngs[0])
+  }
+
+  
 }
+
+
   
 
 

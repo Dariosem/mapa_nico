@@ -21,18 +21,30 @@
 						<option value="null" disabled="true" [selected]="true">Seleccionar lote...</option>
 						<option *ngFor="let lot of lotes" value="{{lot._id}}" >{{lot.properties.name}}</option>
 					</select>
-				</div> 
+				</div>
+				<div (click)="edit = !edit">
+					<button class="btn btn-default" *ngIf="!edit"> Editar</button>
+					<button class="btn btn-default" *ngIf="edit"> Guardar</button>
+				</div>
 			</form>
 		</div>
+
 		<div class="col-md-8">
-			<div leaflet class="mapa"
+			
+			<div leaflet class="mapa" 
 				[leafletOptions]="options"
 				[(leafletZoom)]="zoom"
 				[leafletCenter]="center"
 				[leafletLayers]="layers"
-				[leafletLayersControl]="layersControl"
-				
-			></div>
+				[leafletLayersControl]="layersControl">
+
+				<div *ngIf="edit"
+        			leafletDraw
+					[leafletDrawOptions]="drawOptions"
+					(leafletDrawStart)="onDrawStart($event)"
+					(leafletDrawCreated)="onDrawCreated($event)"
+				></div>
+			</div>
 		</div>
 		
 	</div>
