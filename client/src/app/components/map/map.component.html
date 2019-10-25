@@ -1,40 +1,53 @@
-<div class="titulo">
-	<h2>Loteos Nico</h2>
-</div>
-<div class="mapa-container">
-	<div class="row">
-		<div class="col-md-4">
-			<form>
-				<!-- Lista de loteos -->
-				<div class="form-group">
-					<label for="loteo">Loteo:</label>
-					<select name="loteo" class="form-control"  (change)="onChange($event)"  placeholder="Seleccionar un loteo..." required>
-						<option value="null" disabled="true" [selected]="true">Seleccionar loteo...</option>
-						<option *ngFor="let lot of loteos" value="{{lot._id}}" >{{lot.properties.name}}</option>
-					</select>
-				</div>
-				<hr/>
-				<!-- Lista de lotes -->
-				 <div class="form-group">
-					<label for="lote">Lote:</label>
-					<select name="lote" class="form-control"   placeholder="Seleccionar un lote..." required>
-						<option value="null" disabled="true" [selected]="true">Seleccionar lote...</option>
-						<option *ngFor="let lot of lotes" value="{{lot._id}}" >{{lot.properties.name}}</option>
-					</select>
-				</div> 
-			</form>
-		</div>
-		<div class="col-md-8">
-			<div leaflet class="mapa"
-				[leafletOptions]="options"
-				[(leafletZoom)]="zoom"
-				[leafletCenter]="center"
-				[leafletLayers]="layers"
-				[leafletLayersControl]="layersControl"
+<div *ngIf="identity">
+	<div class="titulo">
+		<h2>Loteos Nico</h2>
+	</div>
+	<div class="mapa-container">
+		<div class="row">
+			<div class="col-md-4">
+				<form>
+					<!-- Lista de loteos -->
+					<div class="form-group" *ngIf="loteos!=[] && loteos!=null">
+						<label for="loteo">Loteo:</label>
+						<select name="loteo" class="form-control"  (change)="onChange($event)"  placeholder="Seleccionar un loteo..." required>
+							<option value="null" disabled="true" [selected]="true">Seleccionar loteo...</option>
+							<option *ngFor="let lot of loteos" value="{{lot._id}}" >{{lot.properties.name}}</option>
+						</select>
+					</div>
+					<hr/>
+					<!-- Lista de lotes -->
+					 <div class="form-group" *ngIf="lotes!=[] && lotes!=null">
+						<label for="lote">Lote:</label>
+						<select name="lote" class="form-control"   placeholder="Seleccionar un lote..." required>
+							<option value="null" disabled="true" [selected]="true">Seleccionar lote...</option>
+							<option *ngFor="let lot of lotes" value="{{lot._id}}" >{{lot.properties.name}}</option>
+						</select>
+					</div>
+					
+					<button class="btn btn-default" (click)="edit = !edit" *ngIf="!edit && identity && identity.role=='admin'"> Editar</button>
+					<button class="btn btn-default" (click)="edit = !edit" *ngIf="edit && identity && identity.role=='admin'"> Guardar</button>
+					
+				</form>
+			</div>
 	
+			<div class="col-md-8">
 				
-			></div>
+				<div leaflet class="mapa" 
+					[leafletOptions]="options"
+					[(leafletZoom)]="zoom"
+					[leafletCenter]="center"
+					[leafletLayers]="layers"
+					[leafletLayersControl]="layersControl">
+	
+					<div *ngIf="edit"
+						leafletDraw
+						[leafletDrawOptions]="drawOptions"
+						(leafletDrawStart)="onDrawStart($event)"
+						(leafletDrawCreated)="onDrawCreated($event)"
+					></div>
+				</div>
+			</div>
+			
 		</div>
-		
 	</div>
 </div>

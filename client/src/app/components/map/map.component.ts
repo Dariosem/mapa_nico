@@ -1,47 +1,68 @@
 import { Component, OnInit } from '@angular/core';
 import { latLng, tileLayer, circle, polygon, marker, LatLng, Layer, icon} from 'leaflet';
-
+import * as L from 'leaflet';
 
 import { LoteoService } from '../../services/loteo.service';
 import { Loteo } from '../../models/loteo';
 
 import { LoteService } from '../../services/lote.service';
 import { CoordsOrderChangeService } from '../../services/coords-order-change.service';
+import { UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  providers: [LoteoService, LoteService, CoordsOrderChangeService]
+  providers: [LoteoService, LoteService, CoordsOrderChangeService, UserService ]
 })
 
 export class MapComponent implements OnInit {
-/* public options: object;
+  /* public options: object;
 
-public zoom: any;
-public center: any; */
-public loteos: [any];
-public lotes: [any];
-public loteo: Loteo;
-
+  public zoom: any;
+  public center: any; */
+  public loteos: [any];
+  public lotes: [any];
+  public loteo: Loteo;
+  public identity: string;
+  public token: string;
 
   constructor(
     private _loteoService: LoteoService,
     private _loteService: LoteService,
-    private _coordService: CoordsOrderChangeService
-  ) {
-    
-   }
+    private _coordService: CoordsOrderChangeService,
+    private _userService: UserService
+  ) { 
+    this.token = this._userService.getToken();
+    this.identity = this._userService.getIdentity();
+  }
 
   ngOnInit() {
     
     this.getLoteos();
   }
 
+  /**Busca de la base de datos los loteos cargados y los guarda en el parametro loteos */
+   getLoteos(){
+    this._loteoService.getLoteos(this.token).subscribe(
+      resp=>{
+        if (!resp.loteos) {
+          console.log('No se encontraron loteos en la base de datos');
+        } else {
+          this.loteos = resp.loteos;
+          //console.log(this.loteos);
+        }
+      },
+      error=>{
+        console.log('Error en la carga de los loteos');
+      }
+    );
+  }
+  
   optionsSpec: any = {
 		layers: [{ url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', attribution: 'Open Street Map' }],
-		zoom: 5,
-		center: [ -38.96138597360268, -68.2312560081482 ]
+		zoom: 11,
+		center: [ -38.96138597360268, -68.1212570081482 ]
 	};
 
 	// Leaflet bindings
@@ -73,28 +94,12 @@ public loteo: Loteo;
     }
   }
 
-  /**Busca de la base de datos los loteos cargados y los guarda en el parametro loteos */
-   getLoteos(){
-    this._loteoService.getLoteos().subscribe(
-      resp=>{
-        if (!resp.loteos) {
-          console.log('No se encontraron loteos en la base de datos');
-        } else {
-          this.loteos = resp.loteos;
-          //console.log(this.loteos);
-        }
-      },
-      error=>{
-        console.log('Error en la carga de los loteos');
-      }
-    );
-  }
   
   onChange(e){
     //console.log(e.target.value);
 
     //Obtener el loteo seleccionado
-    this._loteoService.getLoteo(e.target.value).subscribe(
+    this._loteoService.getLoteo(this.token, e.target.value).subscribe(
       resp=>{
         if (!resp.loteo) {
           console.log('No se encontró el loteo en la base de datos');
@@ -123,9 +128,10 @@ public loteo: Loteo;
                         </a>`
                       );
           this.layers.push(this.marker);
+
           //Obtener los lotes correspondientes a este loteo ============================
           let loteo_id:String = resp.loteo._id;
-          this._loteService.getLotes(loteo_id).subscribe(
+          this._loteService.getLotes(this.token, loteo_id).subscribe(
             resp => {
               if (!resp.lotes){
                 console.log('No se encontraron lotes para este loteo en la base de datos');
@@ -180,9 +186,38 @@ public loteo: Loteo;
 
     
   }
-  
 
+  drawOptions = {
+    position: 'topright',
+    draw: {
+       marker: {
+          icon: L.icon({
+              iconSize: [ 25, 41 ],
+              iconAnchor: [ 13, 41 ],
+              iconUrl: 'leaflet-draw/marker-icon.png',
+              shadowUrl: 'leaflet-draw/marker-shadow.png'
+          })
+       },
+       polyline: false,
+       circle: {
+           shapeOptions: {
+               color: '#aaaaaa'
+           }
+       }
+    }
+  };
+  onDrawStart(e){
+    console.log('Inicio de edicion')
+  }
+
+  onDrawCreated(e){
+    console.log(e.layer._latlngs[0])
+  }
+
+  
 }
+
+
   
 
 

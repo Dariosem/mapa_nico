@@ -1,7 +1,7 @@
 {
-  "name": "curso-mean2",
+  "name": "mapa2",
   "version": "1.0.0",
-  "description": "Proyecto generado para el curso de Udemy",
+  "description": "Proyecto loteos Nico",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",

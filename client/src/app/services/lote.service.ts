@@ -17,10 +17,11 @@ export class LoteService {
       this.url = GLOBAL.url;
   }
 
-  getLotes(id: String = null): Observable<any>{
+  getLotes(token, id: String = null): Observable<any>{
       
       let headers = new HttpHeaders({
-          'content-type':'application/json'
+          'content-type':'application/json',
+          'Authorization': token
       });
 
       if (id==null) {
@@ -33,40 +34,44 @@ export class LoteService {
       
   }
 
-  getLote(id:string): Observable<any>{
+  getLote(token, id:string): Observable<any>{
 
       let headers = new HttpHeaders({
-          'content-type':'application/json'
+          'content-type':'application/json',
+          'Authorization': token
       });
 
       return this._http.get(this.url + 'lote/' + id, {headers: headers} )
                           .map(res => res);
   }
 
-  addLote(lote: Lote): Observable<any>{
+  addLote(token, lote: Lote): Observable<any>{
      let params = JSON.stringify(lote);
      let headers = new HttpHeaders({
-         'content-type':'application/json'
+         'content-type':'application/json',
+         'Authorization': token
      });
 
      return this._http.post(this.url + 'lote', params, { headers: headers })
                       .map(res => res);
   }
 
-  editLote(id:string, lote: Lote): Observable<any>{
+  editLote(token, id:string, lote: Lote): Observable<any>{
       let params = JSON.stringify(lote);
       let headers = new HttpHeaders({
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          'Authorization': token
       });
 
       return this._http.post(this.url + 'edit-lote/' + id, params, {headers: headers})
                           .map(res => res);
   }
 
-  deleteLote(id:string): Observable<any>{
+  deleteLote(token, id:string): Observable<any>{
 
       let headers = new HttpHeaders({
-          'content-type':'application/json'
+          'content-type':'application/json',
+          'Authorization': token
       });
 
       return this._http.get(this.url + 'delete-lote/' + id, {headers: headers} )

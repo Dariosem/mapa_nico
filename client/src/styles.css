@@ -4,3 +4,19 @@ html, body {
     margin: 0;
     padding: 0;
   }
+
+  .btn-default {
+    color: #243247;
+    background-color: #9cbff5;
+    border-color: #9cbff5;
+  }
+  
+  .btn-default:hover {
+    color: #06080a;
+    background-color: #6b84aa;
+    border-color: #6b84aa;
+  }
+
+  .border-default {
+    border-color: #b9b8b8 !important;
+  }

@@ -8,7 +8,7 @@ var app = express();
 //cargar rutas
 var loteRoutes = require('./routes/lote.routes');
 var loteoRoutes = require('./routes/loteo.routes');
-/* var userRoutes = require('./routes/user.routes');*/
+var userRoutes = require('./routes/user.routes');
 
 
 app.use(bodyParser.urlencoded({extended:false}));
@@ -28,7 +28,8 @@ app.use((req, res, next) => {
 app.use('/api', loteRoutes);
 app.use('/api', loteoRoutes);
 //app.use(express.static(path.join(__dirname, '../client')));
-/* app.use('/api', userRoutes);
+app.use('/api', userRoutes);
+/*
 app.use('/api', artistRoutes);
 app.use('/api', albumRoutes);
 app.use('/api', songRoutes); */
