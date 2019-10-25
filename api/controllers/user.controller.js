@@ -22,7 +22,7 @@ function saveUser(req, res){
     user.name = params.name;
     user.surname = params.surname;
     user.email = params.email;
-    user.role = 'ROL-USER';
+    user.role = 'user';
     user.image = 'null';
 
     if(params.password){
@@ -78,7 +78,7 @@ function loginUser(req, res){
                             res.status(200).send([{user}]);
                         }
                     } else {
-                        res.status(404).send({message: 'El usuario no ha podido logearse'});
+                        res.status(404).send({message: 'El usuario no ha podido loguearse'});
                     }
                 });
             }
@@ -153,6 +153,12 @@ function getImageFile(req, res){
     })
 }
 
+function getUsers(req, res, next){
+    User.find().then((users)=>{
+        res.send({users});
+    }).catch(next);
+}
+
 module.exports = {
     pruebas,
     saveUser,
@@ -160,4 +166,5 @@ module.exports = {
     updateUser,
     uploadImage,
     getImageFile,
+    getUsers
 }

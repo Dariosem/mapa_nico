@@ -3,7 +3,7 @@
 var jwt = require('jwt-simple');
 var moment = require('moment');
 
-var secret = 'clave_secreta_curso';
+var secret = 'clave_secreta_mapas';
 
 exports.createToken = function(user){
     var payload = {

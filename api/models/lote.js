@@ -9,6 +9,7 @@ const PolygonSchema = new Schema({
     type: {
         type: String,
         enum: ['Polygon'],
+        default: 'Polygon',
         required: true
     },
     coordinates:{
@@ -19,7 +20,7 @@ const PolygonSchema = new Schema({
 });
 
 const LoteSchema = new Schema({
-    type: String,
+    name: { type: String, required: true },
     geometry: {
         type: PolygonSchema
     },

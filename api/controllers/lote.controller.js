@@ -1,5 +1,5 @@
 'use strict'
-const mongoose = require('mongoose');
+
 const Lote = require('../models/lote');
 
 //Cargar un lote nuevo

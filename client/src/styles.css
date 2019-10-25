@@ -16,3 +16,7 @@ html, body {
     background-color: #6b84aa;
     border-color: #6b84aa;
   }
+
+  .border-default {
+    border-color: #b9b8b8 !important;
+  }
